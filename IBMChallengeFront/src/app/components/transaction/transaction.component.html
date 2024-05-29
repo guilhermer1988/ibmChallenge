@@ -1,0 +1,18 @@
+<div class="transactions-container">
+  <h2>Transações</h2>
+  <form (submit)="createTransaction()">
+    <label for="accountNumberOrigin">Conta Origem</label>
+    <select [(ngModel)]="newTransaction.accountNumberOrigin" name="accountNumberOrigin" id="accountNumberOrigin" required>
+      <option *ngFor="let account of accounts" [value]="account.accountNumber">{{ account.accountNumber }}</option>
+    </select>
+
+    <label for="accountNumberDestination">Conta Destino</label>
+    <select [(ngModel)]="newTransaction.accountNumberDestination" name="accountNumberDestination" id="accountNumberDestination" required>
+      <option *ngFor="let account of accounts" [value]="account.accountNumber">{{ account.accountNumber }}</option>
+    </select>
+
+    <input [(ngModel)]="newTransaction.value" name="value" type="number" placeholder="Valor" required />
+    {{ formatCurrency(newTransaction.value) }}
+    <button type="submit">Realizar Transação</button>
+  </form>
+</div>

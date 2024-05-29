@@ -1,0 +1,33 @@
+<div class="account-statement-container">
+  <h2>Extrato da Conta</h2>
+  <form (submit)="loadTransactions()">
+    <label for="accountNumber">Selecionar Conta</label>
+    <select [(ngModel)]="selectedAccountNumber" name="accountNumber" id="accountNumber" required (change)="clearTransactions()">
+      <option *ngFor="let account of accounts" [value]="account.accountNumber">
+        {{ account.accountNumber }} - {{ account.client.email }}
+      </option>
+    </select>
+    <button type="submit">Exibir Extrato</button>
+  </form>
+  <ng-container *ngIf="accountBalance">
+    <h3>Saldo: {{ accountBalance | currency:'BRL':'symbol':'1.2-2' }}</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Origem</th>
+          <th>Destino</th>
+          <th>Valor</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>{{ transaction.accountOrigin.accountNumber }}</td>
+          <td>{{ transaction.accountDestiny.accountNumber }}</td>
+          <td>{{ transaction.value | currency:'BRL':'symbol':'1.2-2' }}</td>
+          <td>{{ transaction.createAt | date:'dd-MM-yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>

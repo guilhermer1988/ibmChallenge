@@ -1,0 +1,35 @@
+<div class="client-container">
+  <h2>Clientes</h2>
+  <form (submit)="saveClient()">
+    <input [(ngModel)]="newClient.name" name="name" placeholder="Nome" required />
+    <input [(ngModel)]="newClient.email" name="email" placeholder="Email" required />
+    <input [(ngModel)]="newClient.age" name="age" type="number" placeholder="Idade" required pattern="[0-9]+"/>
+    <input [(ngModel)]="newClient.address" name="address" placeholder="Endereço" required />
+    <button type="submit">{{ editingClient ? 'Atualizar' : 'Adicionar' }} Cliente</button>
+  </form>
+  <div class="client-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Idade</th>
+          <th>Endereço</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients">
+          <td>{{ client.name }}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client.age }}</td>
+          <td>{{ client.address }}</td>
+          <td>
+            <button (click)="editClient(client)">Editar</button>
+            <button (click)="deleteClient(client.id)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
