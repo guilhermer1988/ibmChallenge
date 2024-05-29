@@ -1,0 +1,10 @@
+version: '3.4'
+ 
+services:
+  mysql:
+    image: mysql:8.0.22
+    container_name: meusqldb
+ 
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: "phpmeuadmin"
